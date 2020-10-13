@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.zdl.im","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="之前有一个叫IBMYes的项目，是利用IBM Cloud免费云服务器搭建科学上网的V2ray服务，江湖传闻速度很快搭配CF可上4k。 然鹅我部署之后，上网貌似不成功，由于有更方便稳定的免费服务就没有过多的折腾，刚好看了几天fastapi的教程，想着用这个试试搭个线报网站。 爬取即时线报，推送到电报群进行提醒，通过js调用fastapi相关数据到html页面进行展示。 效果展示：最新线报 注册IBM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IBM cloud免费服务器python fastapi搭建线报网站">
+<meta property="og:url" content="https://blog.zdl.im/post/ibmcloud/index.html">
+<meta property="og:site_name" content="Sky&#39;s Blog">
+<meta property="og:description" content="之前有一个叫IBMYes的项目，是利用IBM Cloud免费云服务器搭建科学上网的V2ray服务，江湖传闻速度很快搭配CF可上4k。 然鹅我部署之后，上网貌似不成功，由于有更方便稳定的免费服务就没有过多的折腾，刚好看了几天fastapi的教程，想着用这个试试搭个线报网站。 爬取即时线报，推送到电报群进行提醒，通过js调用fastapi相关数据到html页面进行展示。 效果展示：最新线报 注册IBM">
+<meta property="og:locale">
+<meta property="article:published_time" content="2020-09-05T11:19:30.000Z">
+<meta property="article:modified_time" content="2020-10-13T02:49:54.303Z">
+<meta property="article:author" content="Sky">
+<meta property="article:tag" content="hexo">
+<meta property="article:tag" content="IBM Cloud">
+<meta property="article:tag" content="fastapi">
+<meta property="article:tag" content="vue.js">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://blog.zdl.im/post/ibmcloud/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>IBM cloud免费服务器python fastapi搭建线报网站 | Sky's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Sky's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://blog.zdl.im/post/ibmcloud/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sky">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sky's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          IBM cloud免费服务器python fastapi搭建线报网站
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-05 11:19:30" itemprop="dateCreated datePublished" datetime="2020-09-05T11:19:30+00:00">2020-09-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-13 02:49:54" itemprop="dateModified" datetime="2020-10-13T02:49:54+00:00">2020-10-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>之前有一个叫<strong>IBMYes</strong>的项目，是利用IBM Cloud免费云服务器搭建科学上网的V2ray服务，江湖传闻速度很快搭配CF可上4k。</p>
+<p>然鹅我部署之后，上网貌似不成功，由于有更方便稳定的免费服务就没有过多的折腾，刚好看了几天fastapi的教程，想着用这个试试搭个线报网站。</p>
+<p>爬取即时线报，推送到电报群进行提醒，通过js调用fastapi相关数据到html页面进行展示。</p>
+<p>效果展示：<a target="_blank" rel="noopener" href="https://aosky.us-south.cf.appdomain.cloud/">最新线报</a></p>
+<h3 id="注册IBM免费云服务器"><a href="#注册IBM免费云服务器" class="headerlink" title="注册IBM免费云服务器"></a>注册IBM免费云服务器</h3><p>网址: <a target="_blank" rel="noopener" href="https://cloud.ibm.com/">IBM Cloud</a></p>
+<p><strong>无须信用卡</strong>，只需要邮箱即可。</p>
+<p>注册很简单,略过不提。</p>
+<p>注册成功登录之后，创建一个<strong>Cloud Foundry 应用程序</strong>，选择<strong>达拉斯</strong> <strong>256M</strong> <strong>python</strong>。</p>
+<h3 id="安装IBM客户端"><a href="#安装IBM客户端" class="headerlink" title="安装IBM客户端"></a>安装IBM客户端</h3><p>具体步骤看<a target="_blank" rel="noopener" href="https://cloud.ibm.com/docs/cli">这里</a><br>安装，登录等等。。。</p>
+<h3 id="Github-Actions-设置自动开机"><a href="#Github-Actions-设置自动开机" class="headerlink" title="Github Actions 设置自动开机"></a>Github Actions 设置自动开机</h3><p>按照IBMYes项目相关设置，设置10天重启一次服务即可。</p>
+<h3 id="线报采集"><a href="#线报采集" class="headerlink" title="线报采集"></a>线报采集</h3><p>用python写一个简单的爬虫，大致代码如下，四个目标网站，利用requests+lxml库获取目标网站线报的url和title并写入数据库。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">kxd_api = <span class="string">&#x27;https://www.kxdao.net/forum-42-1.html&#x27;</span></span><br><span class="line">wgzj_api = <span class="string">&#x27;http://www.wgzj.cn/bbs/forum-2-1.html&#x27;</span></span><br><span class="line">xb0818_api = <span class="string">&#x27;http://www.0818tuan.com/list-1-0.html&#x27;</span></span><br><span class="line">leyu_api = <span class="string">&#x27;https://bbs.leyuz.net/f/xianbao&#x27;</span></span><br><span class="line"></span><br><span class="line">headers = &#123;<span class="string">&quot;User-Agent&quot;</span>:<span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Spider</span>(<span class="params">object</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,url=None</span>):</span></span><br><span class="line">        <span class="keyword">if</span> url!=<span class="literal">None</span>:</span><br><span class="line">            self.url = url</span><br><span class="line">            self.res = requests.get(url,headers=headers)</span><br><span class="line">            <span class="comment">#self.res.encoding = &quot;utf-8&quot;</span></span><br><span class="line">            self.soup = etree.HTML(self.res.text)</span><br><span class="line">                </span><br><span class="line">    <span class="comment">#科学刀最新线报</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">spider_kxd</span>(<span class="params">self</span>):</span></span><br><span class="line">        site = <span class="string">&#x27;科学刀&#x27;</span></span><br><span class="line">        soup = Spider(kxd_api).soup</span><br><span class="line">        <span class="keyword">for</span> soup_a <span class="keyword">in</span> soup.xpath(<span class="string">&#x27;//a[@class=&quot;s xst&quot;]&#x27;</span>):</span><br><span class="line">            title = soup_a.text</span><br><span class="line">            link = soup_a.get(<span class="string">&#x27;href&#x27;</span>)</span><br><span class="line">            <span class="keyword">if</span> Message.get_or_none(Message.link==link):</span><br><span class="line">                <span class="keyword">pass</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                Message.create(title=title,link=link,site=site)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>如果需要采集之后推送到电报群或微信群使用相应的telegram-python-bot或wxpy库即可。</p>
+<h3 id="fastapi"><a href="#fastapi" class="headerlink" title="fastapi"></a>fastapi</h3><p>fastapi字面意思是一个快的api库，通过fastapi将线报信息转换为api接口，通过网页进行调用。<br>大致代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.get(&quot;/xb/&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">xb</span>(<span class="params">request: Request</span>):</span></span><br><span class="line">    p = Message.select(Message.title,Message.link).order_by(Message.pubtime.desc()).limit(<span class="number">10</span>)</span><br><span class="line">    data = []</span><br><span class="line">    <span class="keyword">for</span> q <span class="keyword">in</span> p:</span><br><span class="line">        msg = &#123;<span class="string">&#x27;title&#x27;</span>:q.title,<span class="string">&#x27;link&#x27;</span>:q.link&#125;</span><br><span class="line">        data.append(msg)</span><br><span class="line">    <span class="keyword">return</span> data</span><br></pre></td></tr></table></figure>
+<h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><p>创建一个manifest.yml文件，内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">applications:</span><br><span class="line"> - name: yourname</span><br><span class="line">   random-route: true</span><br><span class="line">   memory: 256M</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>创建一个Procfile，内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">web: gunicorn -w 3 -k uvicorn.workers.UvicornWorker main:app</span><br></pre></td></tr></table></figure>
+<p>创建一个requirements.txt，内容为你所项目所使用的各类依赖库。</p>
+<p>具体步骤看<a target="_blank" rel="noopener" href="https://cloud.ibm.com/docs/cli">这里</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/hexo/" rel="tag"># hexo</a>
+              <a href="/tags/IBM-Cloud/" rel="tag"># IBM Cloud</a>
+              <a href="/tags/fastapi/" rel="tag"># fastapi</a>
+              <a href="/tags/vue-js/" rel="tag"># vue.js</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/post/hello-world/" rel="prev" title="使用VScode编写MarkDown，通过Github Actions自动部署hexo博客到GithubPages">
+      <i class="fa fa-chevron-left"></i> 使用VScode编写MarkDown，通过Github Actions自动部署hexo博客到GithubPages
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/post/pymongo/" rel="next" title="pymongo">
+      pymongo <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E5%86%8CIBM%E5%85%8D%E8%B4%B9%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">1.</span> <span class="nav-text">注册IBM免费云服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85IBM%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="nav-number">2.</span> <span class="nav-text">安装IBM客户端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Github-Actions-%E8%AE%BE%E7%BD%AE%E8%87%AA%E5%8A%A8%E5%BC%80%E6%9C%BA"><span class="nav-number">3.</span> <span class="nav-text">Github Actions 设置自动开机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E6%8A%A5%E9%87%87%E9%9B%86"><span class="nav-number">4.</span> <span class="nav-text">线报采集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fastapi"><span class="nav-number">5.</span> <span class="nav-text">fastapi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2"><span class="nav-number">6.</span> <span class="nav-text">部署</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Sky</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sky</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

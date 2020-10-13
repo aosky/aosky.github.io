@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.zdl.im","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="mongodb的操作及使用安装 Windows安装  下载地址 ：www.mongodb.com  下载完成之后一顿下一步即可安装。  Linux安装  安装方法 百度之很多，我使用的是Docker进行安装的，简单。  基本操作  配置远程及设置密码 修改配置文件mongodb.conf中bind_ip将127.0.0.1改成0.0.0.0 &#96;&#96;&#96; security:authorization:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pymongo">
+<meta property="og:url" content="https://blog.zdl.im/post/pymongo/index.html">
+<meta property="og:site_name" content="Sky&#39;s Blog">
+<meta property="og:description" content="mongodb的操作及使用安装 Windows安装  下载地址 ：www.mongodb.com  下载完成之后一顿下一步即可安装。  Linux安装  安装方法 百度之很多，我使用的是Docker进行安装的，简单。  基本操作  配置远程及设置密码 修改配置文件mongodb.conf中bind_ip将127.0.0.1改成0.0.0.0 &#96;&#96;&#96; security:authorization:">
+<meta property="og:locale">
+<meta property="article:published_time" content="2020-10-13T10:47:48.000Z">
+<meta property="article:modified_time" content="2020-10-13T02:49:54.303Z">
+<meta property="article:author" content="Sky">
+<meta property="article:tag" content="pymongo,mongodb">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://blog.zdl.im/post/pymongo/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>pymongo | Sky's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Sky's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://blog.zdl.im/post/pymongo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sky">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sky's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          pymongo
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-10-13 10:47:48 / 修改时间：02:49:54" itemprop="dateCreated datePublished" datetime="2020-10-13T10:47:48+00:00">2020-10-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="mongodb的操作及使用"><a href="#mongodb的操作及使用" class="headerlink" title="mongodb的操作及使用"></a>mongodb的操作及使用</h2><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><ul>
+<li><p>Windows安装</p>
+<blockquote>
+<p>下载地址 ：<a target="_blank" rel="noopener" href="https://www.mongodb.com/try/download/community">www.mongodb.com</a></p>
+</blockquote>
+<p>下载完成之后一顿下一步即可安装。</p>
+</li>
+<li><p>Linux安装</p>
+<ul>
+<li><p>安装方法</p>
+<p>百度之很多，我使用的是Docker进行安装的，简单。</p>
+</li>
+<li><p>基本操作</p>
+<ul>
+<li>配置远程及设置密码<ul>
+<li>修改配置文件mongodb.conf中bind_ip将127.0.0.1改成0.0.0.0</li>
+<li>```<ul>
+<li>security:<br>authorization: disabled -&gt;改为enable<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- 添加管理员</span><br></pre></td></tr></table></figure>
+db.createUser({user:’username’,pwd:’pwd’,roles:[‘readWrite’,db:’admin’]})<br>db.createUser({user:’admin’, pwd:’admin’, roles: [{ role: “userAdminAnyDatabase”, db: “admin” }]})<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- Docker安装</span><br><span class="line">  - 安装方法</span><br><span class="line">    pull最新版本mongp</span><br></pre></td></tr></table></figure>
+docker pull mongo<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">运行 &#96;--name&#96;设置名称 &#96;-v&#96;挂载数据 &#96;-p&#96;端口映射 &#96;-d&#96;后台运行</span><br></pre></td></tr></table></figure>
+docker run –name mongodb -v ~/docker/mongo:/data/db -p 27017:27017 -d mongo<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">设置用户进入&#96;mongodb&#96;容器进行设置</span><br></pre></td></tr></table></figure>
+docker exec -it mongodb bash<br>mongo<h1 id="进入-admin-的数据库"><a href="#进入-admin-的数据库" class="headerlink" title="进入 admin 的数据库"></a>进入 admin 的数据库</h1>use admin<h1 id="创建管理员用户"><a href="#创建管理员用户" class="headerlink" title="创建管理员用户"></a>创建管理员用户</h1>db.createUser(<br>{<br>user: “admin”,<br>pwd: “pwd”,<br>roles: [ { role: “userAdminAnyDatabase”, db: “admin” } ]<br>}<br>)<h1 id="创建有可读写权限的用户-对于一个特定的数据库-比如’demo’"><a href="#创建有可读写权限的用户-对于一个特定的数据库-比如’demo’" class="headerlink" title="创建有可读写权限的用户. 对于一个特定的数据库, 比如’demo’"></a>创建有可读写权限的用户. 对于一个特定的数据库, 比如’demo’</h1>db.createUser({<br>user: ‘username’,<br>pwd: ‘pwd’,<br>roles: [{role: “readWrite”, db: “demo”}]<br>})<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- 远程访问</span><br><span class="line"></span><br><span class="line">    在 &#96;mongodb&#96; 的容器当中操作修改&#96;bindIP&#96;</span><br></pre></td></tr></table></figure>
+#更新源<br>apt-get update<h1 id="安装-vim"><a href="#安装-vim" class="headerlink" title="安装 vim"></a>安装 vim</h1>apt-get install vim<h1 id="修改-mongo-配置文件"><a href="#修改-mongo-配置文件" class="headerlink" title="修改 mongo 配置文件"></a>修改 mongo 配置文件</h1>vim /etc/mongod.conf.orig<h1 id="修改bindIP为0-0-0-0"><a href="#修改bindIP为0-0-0-0" class="headerlink" title="修改bindIP为0.0.0.0"></a>修改bindIP为0.0.0.0</h1>bindIp: 0.0.0.0<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#### pymongo操作</span><br><span class="line">- 增</span><br><span class="line">    &#96;&#96;&#96;python</span><br><span class="line">    #插入一条数据</span><br><span class="line">    insert_one()</span><br><span class="line">    #插入多条数据</span><br><span class="line">    insert_many</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>删</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#删除单条</span></span><br><span class="line">delete_one(&#123;查询条件&#125;)</span><br><span class="line"><span class="comment">#删除多条</span></span><br><span class="line">delete_many(&#123;查询条件&#125;)</span><br><span class="line"><span class="comment">#删除说有</span></span><br><span class="line">delete_many(&#123;&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>改</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update_many(&#123;查询&#125;, &#123; <span class="string">&quot;$set&quot;</span>: &#123; 修改 &#125; &#125;) 或 update_one(&#123;查询&#125;, &#123; <span class="string">&quot;$set&quot;</span>: &#123; 修改 &#125; &#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#查询多条数据</span></span><br><span class="line">find()</span><br><span class="line"><span class="comment">#查询一条数据</span></span><br><span class="line">find_one()</span><br><span class="line"><span class="comment">#查询指定字段</span></span><br><span class="line">find(&#123;&#125;,&#123; <span class="string">&quot;_id&quot;</span>: <span class="number">0</span>, <span class="string">&quot;name&quot;</span>: <span class="number">1</span>, <span class="string">&quot;alexa&quot;</span>: <span class="number">1</span> &#125;)</span><br><span class="line">`<span class="number">0</span>`为不显示，`<span class="number">1</span>`为显示</span><br><span class="line"><span class="comment">#查询条件</span></span><br><span class="line">find(&#123; <span class="string">&quot;name&quot;</span>: 条件 &#125;) 或 find_one(&#123; <span class="string">&quot;name&quot;</span>: 条件 &#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="fastapi-mongodb线报爬虫案例"><a href="#fastapi-mongodb线报爬虫案例" class="headerlink" title="fastapi+mongodb线报爬虫案例"></a>fastapi+mongodb线报爬虫案例</h4></li>
+<li><p>爬取及去重</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">#科学刀最新线报</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">spider_kxd</span>(<span class="params">self</span>):</span></span><br><span class="line">    site = <span class="string">&#x27;科学刀&#x27;</span></span><br><span class="line">    soup = Spider(kxd_api).soup</span><br><span class="line">    <span class="keyword">for</span> soup_a <span class="keyword">in</span> soup.xpath(<span class="string">&#x27;//a[@class=&quot;s xst&quot;]&#x27;</span>):</span><br><span class="line">        title = soup_a.text</span><br><span class="line">        link = soup_a.get(<span class="string">&#x27;href&#x27;</span>)</span><br><span class="line">        msg = &#123; <span class="string">&quot;title&quot;</span>: title, <span class="string">&quot;link&quot;</span>: link, <span class="string">&quot;site&quot;</span>: site ,<span class="string">&quot;pubtime&quot;</span>:int(time.time())&#125;</span><br><span class="line">        q = mycol.find_one(&#123; <span class="string">&quot;link&quot;</span>: link &#125;)</span><br><span class="line">        <span class="keyword">if</span> q == <span class="literal">None</span>:</span><br><span class="line">            mycol.insert_one(msg)</span><br><span class="line">            print(title,<span class="string">&#x27;采集成功！&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>  通过<code>mycol.find_one(&#123; &quot;link&quot;: link &#125;)</code>查询爬取地址是否已在数据库中，为空则进行爬取。</p>
+</li>
+<li><p>fastapi</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.get(&#x27;/&#x27;)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span>(<span class="params">request: Request</span>):</span></span><br><span class="line">    p = mycol.find().sort([(<span class="string">&quot;pubtime&quot;</span>,<span class="number">-1</span>)]).limit(<span class="number">20</span>)</span><br><span class="line">    data = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> p:</span><br><span class="line">        msg = &#123;<span class="string">&#x27;title&#x27;</span>:i[<span class="string">&#x27;title&#x27;</span>],<span class="string">&#x27;link&#x27;</span>:i[<span class="string">&#x27;link&#x27;</span>]&#125;</span><br><span class="line">        data.append(msg)</span><br><span class="line">    <span class="keyword">return</span> data</span><br></pre></td></tr></table></figure>
+<p>  通过<code>sort</code>进行排序(<code>1</code>为正序，<code>-1</code>为倒序)，<code>limit</code>截取显示数量。</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/pymongo-mongodb/" rel="tag"># pymongo,mongodb</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/post/ibmcloud/" rel="prev" title="IBM cloud免费服务器python fastapi搭建线报网站">
+      <i class="fa fa-chevron-left"></i> IBM cloud免费服务器python fastapi搭建线报网站
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#mongodb%E7%9A%84%E6%93%8D%E4%BD%9C%E5%8F%8A%E4%BD%BF%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text">mongodb的操作及使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">1.0.1.</span> <span class="nav-text">安装</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%9B%E5%85%A5-admin-%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number"></span> <span class="nav-text">进入 admin 的数据库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E7%AE%A1%E7%90%86%E5%91%98%E7%94%A8%E6%88%B7"><span class="nav-number"></span> <span class="nav-text">创建管理员用户</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%9C%89%E5%8F%AF%E8%AF%BB%E5%86%99%E6%9D%83%E9%99%90%E7%9A%84%E7%94%A8%E6%88%B7-%E5%AF%B9%E4%BA%8E%E4%B8%80%E4%B8%AA%E7%89%B9%E5%AE%9A%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93-%E6%AF%94%E5%A6%82%E2%80%99demo%E2%80%99"><span class="nav-number"></span> <span class="nav-text">创建有可读写权限的用户. 对于一个特定的数据库, 比如’demo’</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-vim"><span class="nav-number"></span> <span class="nav-text">安装 vim</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9-mongo-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number"></span> <span class="nav-text">修改 mongo 配置文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9bindIP%E4%B8%BA0-0-0-0"><span class="nav-number"></span> <span class="nav-text">修改bindIP为0.0.0.0</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#fastapi-mongodb%E7%BA%BF%E6%8A%A5%E7%88%AC%E8%99%AB%E6%A1%88%E4%BE%8B"><span class="nav-number">0.0.1.</span> <span class="nav-text">fastapi+mongodb线报爬虫案例</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Sky</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sky</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

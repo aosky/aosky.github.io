@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.zdl.im","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Sky&#39;s Blog">
+<meta property="og:url" content="https://blog.zdl.im/index.html">
+<meta property="og:site_name" content="Sky&#39;s Blog">
+<meta property="og:locale">
+<meta property="article:author" content="Sky">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://blog.zdl.im/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Sky's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Sky's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://blog.zdl.im/post/pymongo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sky">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sky's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/pymongo/" class="post-title-link" itemprop="url">pymongo</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-10-13 10:47:48 / 修改时间：02:49:54" itemprop="dateCreated datePublished" datetime="2020-10-13T10:47:48+00:00">2020-10-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="mongodb的操作及使用"><a href="#mongodb的操作及使用" class="headerlink" title="mongodb的操作及使用"></a>mongodb的操作及使用</h2><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><ul>
+<li><p>Windows安装</p>
+<blockquote>
+<p>下载地址 ：<a target="_blank" rel="noopener" href="https://www.mongodb.com/try/download/community">www.mongodb.com</a></p>
+</blockquote>
+<p>下载完成之后一顿下一步即可安装。</p>
+</li>
+<li><p>Linux安装</p>
+<ul>
+<li><p>安装方法</p>
+<p>百度之很多，我使用的是Docker进行安装的，简单。</p>
+</li>
+<li><p>基本操作</p>
+<ul>
+<li>配置远程及设置密码<ul>
+<li>修改配置文件mongodb.conf中bind_ip将127.0.0.1改成0.0.0.0</li>
+<li>```<ul>
+<li>security:<br>authorization: disabled -&gt;改为enable<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- 添加管理员</span><br></pre></td></tr></table></figure>
+db.createUser({user:’username’,pwd:’pwd’,roles:[‘readWrite’,db:’admin’]})<br>db.createUser({user:’admin’, pwd:’admin’, roles: [{ role: “userAdminAnyDatabase”, db: “admin” }]})<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- Docker安装</span><br><span class="line">  - 安装方法</span><br><span class="line">    pull最新版本mongp</span><br></pre></td></tr></table></figure>
+docker pull mongo<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">运行 &#96;--name&#96;设置名称 &#96;-v&#96;挂载数据 &#96;-p&#96;端口映射 &#96;-d&#96;后台运行</span><br></pre></td></tr></table></figure>
+docker run –name mongodb -v ~/docker/mongo:/data/db -p 27017:27017 -d mongo<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">设置用户进入&#96;mongodb&#96;容器进行设置</span><br></pre></td></tr></table></figure>
+docker exec -it mongodb bash<br>mongo<h1 id="进入-admin-的数据库"><a href="#进入-admin-的数据库" class="headerlink" title="进入 admin 的数据库"></a>进入 admin 的数据库</h1>use admin<h1 id="创建管理员用户"><a href="#创建管理员用户" class="headerlink" title="创建管理员用户"></a>创建管理员用户</h1>db.createUser(<br>{<br>user: “admin”,<br>pwd: “pwd”,<br>roles: [ { role: “userAdminAnyDatabase”, db: “admin” } ]<br>}<br>)<h1 id="创建有可读写权限的用户-对于一个特定的数据库-比如’demo’"><a href="#创建有可读写权限的用户-对于一个特定的数据库-比如’demo’" class="headerlink" title="创建有可读写权限的用户. 对于一个特定的数据库, 比如’demo’"></a>创建有可读写权限的用户. 对于一个特定的数据库, 比如’demo’</h1>db.createUser({<br>user: ‘username’,<br>pwd: ‘pwd’,<br>roles: [{role: “readWrite”, db: “demo”}]<br>})<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- 远程访问</span><br><span class="line"></span><br><span class="line">    在 &#96;mongodb&#96; 的容器当中操作修改&#96;bindIP&#96;</span><br></pre></td></tr></table></figure>
+#更新源<br>apt-get update<h1 id="安装-vim"><a href="#安装-vim" class="headerlink" title="安装 vim"></a>安装 vim</h1>apt-get install vim<h1 id="修改-mongo-配置文件"><a href="#修改-mongo-配置文件" class="headerlink" title="修改 mongo 配置文件"></a>修改 mongo 配置文件</h1>vim /etc/mongod.conf.orig<h1 id="修改bindIP为0-0-0-0"><a href="#修改bindIP为0-0-0-0" class="headerlink" title="修改bindIP为0.0.0.0"></a>修改bindIP为0.0.0.0</h1>bindIp: 0.0.0.0<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#### pymongo操作</span><br><span class="line">- 增</span><br><span class="line">    &#96;&#96;&#96;python</span><br><span class="line">    #插入一条数据</span><br><span class="line">    insert_one()</span><br><span class="line">    #插入多条数据</span><br><span class="line">    insert_many</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>删</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#删除单条</span></span><br><span class="line">delete_one(&#123;查询条件&#125;)</span><br><span class="line"><span class="comment">#删除多条</span></span><br><span class="line">delete_many(&#123;查询条件&#125;)</span><br><span class="line"><span class="comment">#删除说有</span></span><br><span class="line">delete_many(&#123;&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>改</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update_many(&#123;查询&#125;, &#123; <span class="string">&quot;$set&quot;</span>: &#123; 修改 &#125; &#125;) 或 update_one(&#123;查询&#125;, &#123; <span class="string">&quot;$set&quot;</span>: &#123; 修改 &#125; &#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#查询多条数据</span></span><br><span class="line">find()</span><br><span class="line"><span class="comment">#查询一条数据</span></span><br><span class="line">find_one()</span><br><span class="line"><span class="comment">#查询指定字段</span></span><br><span class="line">find(&#123;&#125;,&#123; <span class="string">&quot;_id&quot;</span>: <span class="number">0</span>, <span class="string">&quot;name&quot;</span>: <span class="number">1</span>, <span class="string">&quot;alexa&quot;</span>: <span class="number">1</span> &#125;)</span><br><span class="line">`<span class="number">0</span>`为不显示，`<span class="number">1</span>`为显示</span><br><span class="line"><span class="comment">#查询条件</span></span><br><span class="line">find(&#123; <span class="string">&quot;name&quot;</span>: 条件 &#125;) 或 find_one(&#123; <span class="string">&quot;name&quot;</span>: 条件 &#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="fastapi-mongodb线报爬虫案例"><a href="#fastapi-mongodb线报爬虫案例" class="headerlink" title="fastapi+mongodb线报爬虫案例"></a>fastapi+mongodb线报爬虫案例</h4></li>
+<li><p>爬取及去重</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">#科学刀最新线报</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">spider_kxd</span>(<span class="params">self</span>):</span></span><br><span class="line">    site = <span class="string">&#x27;科学刀&#x27;</span></span><br><span class="line">    soup = Spider(kxd_api).soup</span><br><span class="line">    <span class="keyword">for</span> soup_a <span class="keyword">in</span> soup.xpath(<span class="string">&#x27;//a[@class=&quot;s xst&quot;]&#x27;</span>):</span><br><span class="line">        title = soup_a.text</span><br><span class="line">        link = soup_a.get(<span class="string">&#x27;href&#x27;</span>)</span><br><span class="line">        msg = &#123; <span class="string">&quot;title&quot;</span>: title, <span class="string">&quot;link&quot;</span>: link, <span class="string">&quot;site&quot;</span>: site ,<span class="string">&quot;pubtime&quot;</span>:int(time.time())&#125;</span><br><span class="line">        q = mycol.find_one(&#123; <span class="string">&quot;link&quot;</span>: link &#125;)</span><br><span class="line">        <span class="keyword">if</span> q == <span class="literal">None</span>:</span><br><span class="line">            mycol.insert_one(msg)</span><br><span class="line">            print(title,<span class="string">&#x27;采集成功！&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>  通过<code>mycol.find_one(&#123; &quot;link&quot;: link &#125;)</code>查询爬取地址是否已在数据库中，为空则进行爬取。</p>
+</li>
+<li><p>fastapi</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.get(&#x27;/&#x27;)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span>(<span class="params">request: Request</span>):</span></span><br><span class="line">    p = mycol.find().sort([(<span class="string">&quot;pubtime&quot;</span>,<span class="number">-1</span>)]).limit(<span class="number">20</span>)</span><br><span class="line">    data = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> p:</span><br><span class="line">        msg = &#123;<span class="string">&#x27;title&#x27;</span>:i[<span class="string">&#x27;title&#x27;</span>],<span class="string">&#x27;link&#x27;</span>:i[<span class="string">&#x27;link&#x27;</span>]&#125;</span><br><span class="line">        data.append(msg)</span><br><span class="line">    <span class="keyword">return</span> data</span><br></pre></td></tr></table></figure>
+<p>  通过<code>sort</code>进行排序(<code>1</code>为正序，<code>-1</code>为倒序)，<code>limit</code>截取显示数量。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://blog.zdl.im/post/ibmcloud/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sky">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sky's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/ibmcloud/" class="post-title-link" itemprop="url">IBM cloud免费服务器python fastapi搭建线报网站</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-05 11:19:30" itemprop="dateCreated datePublished" datetime="2020-09-05T11:19:30+00:00">2020-09-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-13 02:49:54" itemprop="dateModified" datetime="2020-10-13T02:49:54+00:00">2020-10-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>之前有一个叫<strong>IBMYes</strong>的项目，是利用IBM Cloud免费云服务器搭建科学上网的V2ray服务，江湖传闻速度很快搭配CF可上4k。</p>
+<p>然鹅我部署之后，上网貌似不成功，由于有更方便稳定的免费服务就没有过多的折腾，刚好看了几天fastapi的教程，想着用这个试试搭个线报网站。</p>
+<p>爬取即时线报，推送到电报群进行提醒，通过js调用fastapi相关数据到html页面进行展示。</p>
+<p>效果展示：<a target="_blank" rel="noopener" href="https://aosky.us-south.cf.appdomain.cloud/">最新线报</a></p>
+<h3 id="注册IBM免费云服务器"><a href="#注册IBM免费云服务器" class="headerlink" title="注册IBM免费云服务器"></a>注册IBM免费云服务器</h3><p>网址: <a target="_blank" rel="noopener" href="https://cloud.ibm.com/">IBM Cloud</a></p>
+<p><strong>无须信用卡</strong>，只需要邮箱即可。</p>
+<p>注册很简单,略过不提。</p>
+<p>注册成功登录之后，创建一个<strong>Cloud Foundry 应用程序</strong>，选择<strong>达拉斯</strong> <strong>256M</strong> <strong>python</strong>。</p>
+<h3 id="安装IBM客户端"><a href="#安装IBM客户端" class="headerlink" title="安装IBM客户端"></a>安装IBM客户端</h3><p>具体步骤看<a target="_blank" rel="noopener" href="https://cloud.ibm.com/docs/cli">这里</a><br>安装，登录等等。。。</p>
+<h3 id="Github-Actions-设置自动开机"><a href="#Github-Actions-设置自动开机" class="headerlink" title="Github Actions 设置自动开机"></a>Github Actions 设置自动开机</h3><p>按照IBMYes项目相关设置，设置10天重启一次服务即可。</p>
+<h3 id="线报采集"><a href="#线报采集" class="headerlink" title="线报采集"></a>线报采集</h3><p>用python写一个简单的爬虫，大致代码如下，四个目标网站，利用requests+lxml库获取目标网站线报的url和title并写入数据库。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">kxd_api = <span class="string">&#x27;https://www.kxdao.net/forum-42-1.html&#x27;</span></span><br><span class="line">wgzj_api = <span class="string">&#x27;http://www.wgzj.cn/bbs/forum-2-1.html&#x27;</span></span><br><span class="line">xb0818_api = <span class="string">&#x27;http://www.0818tuan.com/list-1-0.html&#x27;</span></span><br><span class="line">leyu_api = <span class="string">&#x27;https://bbs.leyuz.net/f/xianbao&#x27;</span></span><br><span class="line"></span><br><span class="line">headers = &#123;<span class="string">&quot;User-Agent&quot;</span>:<span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Spider</span>(<span class="params">object</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,url=None</span>):</span></span><br><span class="line">        <span class="keyword">if</span> url!=<span class="literal">None</span>:</span><br><span class="line">            self.url = url</span><br><span class="line">            self.res = requests.get(url,headers=headers)</span><br><span class="line">            <span class="comment">#self.res.encoding = &quot;utf-8&quot;</span></span><br><span class="line">            self.soup = etree.HTML(self.res.text)</span><br><span class="line">                </span><br><span class="line">    <span class="comment">#科学刀最新线报</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">spider_kxd</span>(<span class="params">self</span>):</span></span><br><span class="line">        site = <span class="string">&#x27;科学刀&#x27;</span></span><br><span class="line">        soup = Spider(kxd_api).soup</span><br><span class="line">        <span class="keyword">for</span> soup_a <span class="keyword">in</span> soup.xpath(<span class="string">&#x27;//a[@class=&quot;s xst&quot;]&#x27;</span>):</span><br><span class="line">            title = soup_a.text</span><br><span class="line">            link = soup_a.get(<span class="string">&#x27;href&#x27;</span>)</span><br><span class="line">            <span class="keyword">if</span> Message.get_or_none(Message.link==link):</span><br><span class="line">                <span class="keyword">pass</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                Message.create(title=title,link=link,site=site)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>如果需要采集之后推送到电报群或微信群使用相应的telegram-python-bot或wxpy库即可。</p>
+<h3 id="fastapi"><a href="#fastapi" class="headerlink" title="fastapi"></a>fastapi</h3><p>fastapi字面意思是一个快的api库，通过fastapi将线报信息转换为api接口，通过网页进行调用。<br>大致代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.get(&quot;/xb/&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">xb</span>(<span class="params">request: Request</span>):</span></span><br><span class="line">    p = Message.select(Message.title,Message.link).order_by(Message.pubtime.desc()).limit(<span class="number">10</span>)</span><br><span class="line">    data = []</span><br><span class="line">    <span class="keyword">for</span> q <span class="keyword">in</span> p:</span><br><span class="line">        msg = &#123;<span class="string">&#x27;title&#x27;</span>:q.title,<span class="string">&#x27;link&#x27;</span>:q.link&#125;</span><br><span class="line">        data.append(msg)</span><br><span class="line">    <span class="keyword">return</span> data</span><br></pre></td></tr></table></figure>
+<h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><p>创建一个manifest.yml文件，内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">applications:</span><br><span class="line"> - name: yourname</span><br><span class="line">   random-route: true</span><br><span class="line">   memory: 256M</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>创建一个Procfile，内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">web: gunicorn -w 3 -k uvicorn.workers.UvicornWorker main:app</span><br></pre></td></tr></table></figure>
+<p>创建一个requirements.txt，内容为你所项目所使用的各类依赖库。</p>
+<p>具体步骤看<a target="_blank" rel="noopener" href="https://cloud.ibm.com/docs/cli">这里</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://blog.zdl.im/post/hello-world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sky">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sky's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/hello-world/" class="post-title-link" itemprop="url">使用VScode编写MarkDown，通过Github Actions自动部署hexo博客到GithubPages</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-01 11:19:30" itemprop="dateCreated datePublished" datetime="2020-09-01T11:19:30+00:00">2020-09-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-13 02:49:54" itemprop="dateModified" datetime="2020-10-13T02:49:54+00:00">2020-10-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>这个博客兜兜转转多少次了。</p>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>在Github上创建两个仓库，一个私库存放博客源码，一个用户名.github.io存放生成的public文件。</p>
+<h3 id="创建ssh密钥对"><a href="#创建ssh密钥对" class="headerlink" title="创建ssh密钥对"></a>创建ssh密钥对</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -f github-deploy-key</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>打开 用户名.github.io 的仓库,点击 <strong>setting / deploy key</strong> ，然后点击 <strong>add new key</strong>，名称填写 <strong>HEXO_DEPLOY_PUB</strong> ,值填写上一步生成的公钥(.pub文件)里面的内容，然后勾选 <strong>allow write</strong>，提交。</li>
+<li>打开私库，添加 <strong>setting / secrets / add new key</strong>,名称为 <strong>HEXO_DEPLOY_PRI</strong>,值为生成ssh密钥对之私钥内容，提交。</li>
+</ul>
+<h3 id="创建-github-action-workflow"><a href="#创建-github-action-workflow" class="headerlink" title="创建 github action workflow"></a>创建 github action workflow</h3><p>在私库中点击 <strong>Actions</strong>,新建一个workflow。</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">HEXO</span> <span class="string">CI</span></span><br><span class="line"><span class="attr">on:</span> [<span class="string">push</span>]</span><br><span class="line"><span class="attr">jobs:</span></span><br><span class="line">  <span class="attr">build:</span></span><br><span class="line">    <span class="attr">runs-on:</span> <span class="string">ubuntu-latest</span></span><br><span class="line">    <span class="attr">strategy:</span></span><br><span class="line">      <span class="attr">matrix:</span></span><br><span class="line">        <span class="attr">node-version:</span> [<span class="number">10.</span><span class="string">x</span>]</span><br><span class="line">    <span class="attr">steps:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">uses:</span> <span class="string">actions/checkout@v1</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Use</span> <span class="string">Node.js</span> <span class="string">$&#123;&#123;</span> <span class="string">matrix.node-version</span> <span class="string">&#125;&#125;</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/setup-node@v1</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">node-version:</span> <span class="string">$&#123;&#123;</span> <span class="string">matrix.node-version</span> <span class="string">&#125;&#125;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Configuration</span> <span class="string">environment</span></span><br><span class="line">        <span class="attr">env:</span></span><br><span class="line">          <span class="attr">HEXO_DEPLOY_PRI:</span> <span class="string">$&#123;&#123;secrets.HEXO_DEPLOY_PRI&#125;&#125;</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line">          <span class="string">mkdir</span> <span class="string">-p</span> <span class="string">~/.ssh/</span></span><br><span class="line">          <span class="string">echo</span> <span class="string">&quot;$HEXO_DEPLOY_PRI&quot;</span> <span class="string">&gt;</span> <span class="string">~/.ssh/id_rsa</span></span><br><span class="line">          <span class="string">chmod</span> <span class="number">600</span> <span class="string">~/.ssh/id_rsa</span></span><br><span class="line">          <span class="string">ssh-keyscan</span> <span class="string">github.com</span> <span class="string">&gt;&gt;</span> <span class="string">~/.ssh/known_hosts</span></span><br><span class="line">          <span class="string">git</span> <span class="string">config</span> <span class="string">--global</span> <span class="string">user.name</span> <span class="string">&quot;设置用户名&quot;</span></span><br><span class="line">          <span class="string">git</span> <span class="string">config</span> <span class="string">--global</span> <span class="string">user.email</span> <span class="string">&quot;设置邮箱&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Install</span> <span class="string">dependencies</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line">          <span class="string">npm</span> <span class="string">i</span> <span class="string">-g</span> <span class="string">hexo-cli</span></span><br><span class="line">          <span class="string">npm</span> <span class="string">install</span> <span class="string">hexo-deployer-git</span> <span class="string">--save</span></span><br><span class="line">          <span class="string">npm</span> <span class="string">i</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Generate</span> <span class="string">static</span> <span class="string">blog</span> <span class="string">file</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line">          <span class="string">hexo</span> <span class="string">generate</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Deploy</span> <span class="string">to</span> <span class="string">github</span> <span class="string">page</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line">          <span class="string">hexo</span> <span class="string">deploy</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="修改私库中部署地址"><a href="#修改私库中部署地址" class="headerlink" title="修改私库中部署地址"></a>修改私库中部署地址</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">git@github.com:username/username.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h3><p>在私库博客源文件<strong>source</strong>文件夹中新建一个CNAME的文件，内容为你要绑定的域名，然后在域名服务商处解析域名cname到username.github.io。</p>
+<h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><p>在私库源文件<strong>source/_posts</strong>中添加md格式的博文，然后push，即可自动部署成功。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Sky</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sky</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
